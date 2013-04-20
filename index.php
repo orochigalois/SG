@@ -47,7 +47,7 @@ usort($ScoreArray, "my_sort");
 <title>SG</title> 
 <style type="text/css"> 
  
-html, body { width: 75%; }
+html, body { width: 800px; }
  
 dt.reflect { color: #333333; border-bottom: 6px solid #DDDDDD; line-height: .2em; margin: 0; padding:0 0 0 10px; 
 font-size: 150%; }
