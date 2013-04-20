@@ -3,6 +3,7 @@ include_once('./common.php');
 if(!$_SESSION['user'])
 	die("user not found");
 $_SESSION['URL']=$_GET["URL"];
+$_SESSION['ACCENT']=$_GET["ACCENT"];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 

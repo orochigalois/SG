@@ -170,10 +170,11 @@ function newPopup(url) {
 }
 function FirstIn(user)
 {
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL;
+	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent;
+	accent=$('input[name="RadioGroup"]:checked').val();
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
-	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile;
+	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
@@ -185,10 +186,11 @@ function FirstIn(user)
 }
 function ChangeUrl(user)
 {
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL;
+	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent;
+	accent=$('input[name="RadioGroup"]:checked').val();
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
-	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile;
+	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
@@ -305,8 +307,22 @@ enctype="multipart/form-data">
     </dl> 
     <br style="clear: both;" /> 
 
+	<dl>
+      <dt class="reflect">Step.4 choose accent</dt> 
+      
+      <dd>
+<p class="handwriting">
+        <input type="radio" name="RadioGroup" value="1" checked="checked" ONCLICK=ChangeUrl(<?php echo '"'.$_SESSION['user'].'"';?>) />British Accent
+<input type="radio" name="RadioGroup" value="2" ONCLICK=ChangeUrl(<?php echo '"'.$_SESSION['user'].'"';?>) />American Accent
+</p> 
+        
+      </dd> 
+    </dl> 
+    <br style="clear: both;" /> 
+    
+
     <dl>
-      <dt class="reflect">Step.4 fighting!</dt> 
+      <dt class="reflect">Step.5 fighting!</dt> 
      
       <dd> 
         <p class="handwriting"><a id='fightingURL' href="">Go!</a></p> 

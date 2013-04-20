@@ -3,6 +3,7 @@ include_once('./common.php');
 
 
 $inputWordFile = $_SESSION['URL'];
+$accent = $_SESSION['ACCENT'];
 $fh = fopen($inputWordFile, 'r');
 $theData = fread($fh, filesize($inputWordFile));
 $theData=trim($theData);
@@ -20,8 +21,11 @@ for ($i = 0; $i < count($rows); $i++)
 	$word=strtolower($columns[0]);
 	//If has "\r",then the final JSON is wrong,and the AJAX will never return!!!!!!
 	$sentence=str_replace("\r","",$columns[1]); 
-	
-	$word_url = "http://translate.google.com/translate_tts?ie=UTF-8&q=".$word."&tl=en&prev=input";
+	if($accent==1)
+		$word_url = "http://translate.google.co.uk/translate_tts?ie=UTF-8&q=".$word."&tl=en&prev=input";
+	else if($accent==2)
+		$word_url = "http://translate.google.com/translate_tts?ie=UTF-8&q=".$word."&tl=en&prev=input";
+	else{}
 	$word_saveTo='./userdata/'.$_SESSION['user'].'/word/'.$word.'.mp3';
     $result.= $word.'","sentence": "'.$sentence.'"},{"word":"';
     if(!file_exists($word_saveTo))
@@ -32,7 +36,12 @@ for ($i = 0; $i < count($rows); $i++)
 	{
 		curl_save_file($word_url,$word_saveTo);
 	}
-	$sentence_url = "http://translate.google.com/translate_tts?ie=UTF-8&q=".$sentence."&tl=en&prev=input";
+	
+	if($accent==1)
+		$sentence_url = "http://translate.google.co.uk/translate_tts?ie=UTF-8&q=".$sentence."&tl=en&prev=input";
+	else if($accent==2)
+		$sentence_url = "http://translate.google.com/translate_tts?ie=UTF-8&q=".$sentence."&tl=en&prev=input";
+	else{}
 	$sentence_url=str_replace(" ","%20",$sentence_url);
 	$sentence_saveTo='./userdata/'.$_SESSION['user'].'/sentence/'.$word.'.mp3';
 	
