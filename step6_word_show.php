@@ -64,13 +64,25 @@ h1 { box-shadow: 0 0 20px black; }
  <script type="text/javascript" src="js/jquery-latest.js"></script>
 	<script src="js/jquery.lettering.js"></script>
 	<script>
-		// DOM Ready
-		$(function() {
-			$("#poster h1, #poster p").lettering();
+		
+time=0;
+	
+	$(window).keypress(function(e) {
+  if (e.keyCode == 32) {
+  	if(time==0)
+  		$("#poster h1").html("haha");
+	else if(time==1)
+		$("#poster h1").html("haha1");
+	else if(time==2)
+		$("#poster h1").html("haha2");
+
+	time++;
+    $("#poster h1, #poster p").lettering();
 			$("#poster p span").each(function() {  $(this).css({ top: -(Math.floor(Math.random()*1001)+1500), left: Math.floor(Math.random()*1001)-500,  }); });
 			setTimeout(function() {$('html').addClass("step-one");}, 1000);
 			setTimeout(function() {$('html').addClass("step-two");}, 3000);
-		});
+  }
+});
 	</script>
 </head>
 
