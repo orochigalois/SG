@@ -170,33 +170,37 @@ function newPopup(url) {
 }
 function FirstIn(user)
 {
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent;
+	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
 	accent=$('input[name="RadioGroup"]:checked').val();
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
 	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
+	showURL="/SG/step6_word_show.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
 	//document.getElementById("picURL").innerHTML=picURL;
 	document.getElementById("fightingURL").setAttribute('href',fightingURL);
+	document.getElementById("showURL").setAttribute('href',showURL);
 	//document.getElementById("fightingURL").innerHTML=fightingURL;
 	document.getElementById("downWordURL").setAttribute('href',downWordURL);
 	document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
 }
 function ChangeUrl(user)
 {
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent;
+	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
 	accent=$('input[name="RadioGroup"]:checked').val();
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
 	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
+	showURL="/SG/step6_word_show.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
 	
 	//document.getElementById("picURL").innerHTML=picURL;
 	document.getElementById("fightingURL").setAttribute('href',fightingURL);
+	document.getElementById("showURL").setAttribute('href',showURL);
 	//document.getElementById("fightingURL").innerHTML=fightingURL;
 	document.getElementById("downWordURL").setAttribute('href',downWordURL);
 	document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
@@ -332,7 +336,7 @@ enctype="multipart/form-data">
     <br style="clear: both;" /> 
 
 	<dl>
-      <dt class="reflect">Bonus. download word/sentence sound(for dictation)</dt> 
+      <dt class="reflect">Bonus.1 download word/sentence sound(for dictation)</dt> 
      
       <dd> 
         <p class="handwriting"><a id='downWordURL' href="">word</a></p> 
@@ -342,6 +346,15 @@ enctype="multipart/form-data">
         <p class="handwriting"><a id='downSentenceURL' href="">sentence</a></p> 
         
       </dd>
+    </dl> 
+    <br style="clear: both;" /> 
+    <dl>
+      <dt class="reflect">Bonus.2 words show</dt> 
+      <dd> 
+      <p class="handwriting"><a id='showURL' href="">Go!</a></p> 
+        
+      </dd> 
+      
     </dl> 
     <br style="clear: both;" /> 
 
