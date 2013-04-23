@@ -2,7 +2,7 @@
 session_start();
 set_time_limit(0);
 ////////If a proxy should be used in server,update this 2 constants
-define('USE_PROXY', false);
+define('USE_PROXY', true);
 define('PROXY_ADDRESS', 'http://10.10.5.18:8080');
 
 define('USER_AGENT', 'Mozilla/4.0');
