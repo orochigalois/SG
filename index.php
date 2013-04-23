@@ -170,30 +170,33 @@ function newPopup(url) {
 }
 function FirstIn(user)
 {
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
+	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL,cloudURL;
 	accent=$('input[name="RadioGroup"]:checked').val();
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
 	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
 	showURL="/SG/step6_word_show.php?URL=./userdata/"+user+"/upload"+whichFile;
+	cloudURL="/SG/step7_cloud.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
 	//document.getElementById("picURL").innerHTML=picURL;
 	document.getElementById("fightingURL").setAttribute('href',fightingURL);
 	document.getElementById("showURL").setAttribute('href',showURL);
+	document.getElementById("cloudURL").setAttribute('href',cloudURL);
 	//document.getElementById("fightingURL").innerHTML=fightingURL;
 	document.getElementById("downWordURL").setAttribute('href',downWordURL);
 	document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
 }
 function ChangeUrl(user)
 {
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
+	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL,cloudURL;
 	accent=$('input[name="RadioGroup"]:checked').val();
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
 	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
 	showURL="/SG/step6_word_show.php?URL=./userdata/"+user+"/upload"+whichFile;
+	cloudURL="/SG/step7_cloud.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
@@ -201,6 +204,7 @@ function ChangeUrl(user)
 	//document.getElementById("picURL").innerHTML=picURL;
 	document.getElementById("fightingURL").setAttribute('href',fightingURL);
 	document.getElementById("showURL").setAttribute('href',showURL);
+	document.getElementById("cloudURL").setAttribute('href',cloudURL);
 	//document.getElementById("fightingURL").innerHTML=fightingURL;
 	document.getElementById("downWordURL").setAttribute('href',downWordURL);
 	document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
@@ -352,6 +356,16 @@ enctype="multipart/form-data">
       <dt class="reflect">Bonus.2 words show</dt> 
       <dd> 
       <p class="handwriting"><a id='showURL' href="">Go!</a></p> 
+        
+      </dd> 
+      
+    </dl> 
+    <br style="clear: both;" /> 
+
+	<dl>
+      <dt class="reflect">Bonus.3 synonymic cloud</dt> 
+      <dd> 
+      <p class="handwriting"><a id='cloudURL' href="">Go!</a></p> 
         
       </dd> 
       
