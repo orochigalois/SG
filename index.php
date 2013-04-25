@@ -39,341 +39,386 @@ function my_sort($a, $b)
   
 usort($ScoreArray, "my_sort");
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SG</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family: Helvetica, Arial, Sans-Serif;
+                background: #2c2c2c url(./pic/bg.jpg) top center no-repeat;
+            }
+            #page-wrap {
+                width: 960px;
+                margin: 40px auto;
+                overflow: hidden;
+            }
+            
+            h1 {
+                font-size: 128px;
+                letter-spacing: -1px;
+                color: white;
+                margin: 0 0 15px 0;
+            }
+            h1 span {
+                color: #1f8cc5;
+            }
+            h3 {
+                font-size: 18px;
+                letter-spacing: -1px;
+                margin: 0 0 5px 0;
+            }
+            p, label {
+                font-family: Georgia, serif;
+                font-style: italic;
+                font-size: 18px;
+                margin: 4px 0;
+            }
+            fieldset {
+                width: 280px;
+                padding: 15px;
+                float: left;
+                border: none;
+                margin: 0 10px 0 0;
+            }
+			fieldset#ranking {
+                background: #FFF06A;
+            }
+            fieldset#step_1 {
+                background: #b2e7ca;
+            }
+            fieldset#step_2 {
+                background: #b2d9e7;
+            }
+            fieldset#step_3 {
+                background: #e7c7b2;
+            }
+            legend {
+                font-weight: bold;
+                font-size: 20px;
+                background: white;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                padding: 5px 10px;
+                letter-spacing: -1px;
+            }
+            option {
+                padding: 0 5px;
+            }
+			.uploader{
+			position:relative;
+			display:inline-block;
+			overflow:hidden;
+			cursor:default;
+			padding:0;
+			margin:10px 0px;
+			-moz-box-shadow:0px 0px 5px #ddd;
+			-webkit-box-shadow:0px 0px 5px #ddd;
+			box-shadow:0px 0px 5px #ddd;
+
+			-moz-border-radius:5px;
+			-webkit-border-radius:5px;
+			border-radius:5px;
+			}
+
+			.filename{
+			float:left;
+			display:inline-block;
+			outline:0 none;
+			height:32px;
+			width:180px;
+			margin:0;
+			padding:8px 10px;
+			overflow:hidden;
+			cursor:default;
+			border:1px solid;
+			border-right:0;
+			font:9pt/100% Arial, Helvetica, sans-serif; color:#777;
+			text-shadow:1px 1px 0px #fff;
+			text-overflow:ellipsis;
+			white-space:nowrap;
+
+			-moz-border-radius:5px 0px 0px 5px;
+			-webkit-border-radius:5px 0px 0px 5px;
+			border-radius:5px 0px 0px 5px;
+
+			background:#f5f5f5;
+			background:-moz-linear-gradient(top, #fafafa 0%, #eee 100%);
+			background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#f5f5f5));
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#f5f5f5',GradientType=0);
+			border-color:#ccc;
+
+			-moz-box-shadow:0px 0px 1px #fff inset;
+			-webkit-box-shadow:0px 0px 1px #fff inset;
+			box-shadow:0px 0px 1px #fff inset;
+
+			-moz-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			box-sizing:border-box;
+			}
+
+			.button{
+			float:left;
+			height:32px;
+			display:inline-block;
+			outline:0 none;
+			padding:8px 12px;
+			margin:0;
+			cursor:pointer;
+			border:1px solid;
+			font:bold 9pt/100% Arial, Helvetica, sans-serif;
+
+			-moz-border-radius:0px 5px 5px 0px;
+			-webkit-border-radius:0px 5px 5px 0px;
+			border-radius:0px 5px 5px 0px;
+
+			-moz-box-shadow:0px 0px 1px #fff inset;
+			-webkit-box-shadow:0px 0px 1px #fff inset;
+			box-shadow:0px 0px 1px #fff inset;
+			}
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+			.uploader input[type=file]{
+			position:absolute;
+			top:0; right:0; bottom:0;
+			border:0;
+			padding:0; margin:0;
+			height:30px;
+			cursor:pointer;
+			filter:alpha(opacity=0);
+			-moz-opacity:0;
+			-khtml-opacity: 0;
+			opacity:0;
+			}
 
-<title>SG</title> 
-<style type="text/css"> 
- 
-html, body { width: 800px; }
- 
-dt.reflect { color: #333333; border-bottom: 6px solid #DDDDDD; line-height: .2em; margin: 0; padding:0 0 0 10px; 
-font-size: 150%; }
+			input[type=button]::-moz-focus-inner{padding:0; border:0 none; -moz-box-sizing:content-box;}
+			input[type=button]::-webkit-focus-inner{padding:0; border:0 none; -webkit-box-sizing:content-box;}
+			input[type=text]::-moz-focus-inner{padding:0; border:0 none; -moz-box-sizing:content-box;}
+			input[type=text]::-webkit-focus-inner{padding:0; border:0 none; -webkit-box-sizing:content-box;}
 
- 
-h3.line_drop { font-family:"Trebuchet MS", Garamond, Georgia; line-height: .88em; border-bottom: #990000 1px solid; 
-color: #990000;
-letter-spacing: -2px; }
- 
-h3.elegant { letter-spacing: -2px; font-family:Georgia, "Times New Roman", Times, serif; font-weight: 100; font-size: 
-200%; text-shadow: #666666 0.2em 0.2em; }
- 
 
-p.handwriting { font-style: italic; font-weight: 100; font-family: "Comic Sans MS"; letter-spacing: 1px; font-size: 
-100%; word-spacing: .25em; }
- 
-h3.hide { font-size: 150%; font-weight: 100; line-height: .4em; border-bottom: 7px solid #FFFF66; }
- 
-h3.capital { font-size: 375%; text-transform: uppercase; letter-spacing: -8px; }
-h3.capital span { font-size: 70%; text-transform: lowercase; letter-spacing: -1px;}
- 
- 
-p.letters { line-height: .64em; letter-spacing: -2px; font-family: "Courier New", Courier, monospace; font-size: 25px
-; font-weight: 100; text-transform: uppercase;}
- 
-p.letters2 { line-height: .72em; letter-spacing: -2px; font-family: "Times New Roman", Times, serif; font-size: 25px; 
-font-weight: 100; text-transform: uppercase;}
- 
-p.letters3 { line-height: .77em; letter-spacing: -2px; font-family: Georgia, "Times New Roman", Times, serif; font-
-size: 25px; font-weight: 100; text-transform: uppercase;}
- 
-h3.newspaper { letter-spacing: .10em; font-size: 36px; text-transform: uppercase; font-weight: 100; border-bottom: 
-groove 2px #CCCCCC; width: auto; line-height: 1em; }
- 
-h3.newspaper span { font-family: Georgia, "Times New Roman", Times, serif; }
- 
-h3.newspaper2 { letter-spacing: .10em; font-size: 36px; font-weight: 100; border-bottom: groove 2px #CCCCCC; width: 
-auto; line-height: 1em; font-variant: small-caps;}
- 
-h3.funky { font-family: "Trebuchet MS", Garamond, Georgia; font-size: 36px;letter-spacing: 20px; line-height: .65em; 
-color: #666666; font-weight: 100;}
-h3.funky span { letter-spacing: 5px;}
- 
-h3.el { font-family: Verdana, Arial, Helvetica, sans-serif; color: #BBBBBB; border-bottom: #CCCCCC 1px solid; letter-
-spacing: 1em; font-weight: 100; line-height: .8em; font-size: 9px;}
- 
-h3.num_blend { font-size: 36px; font-weight: 100;}
- 
-h3.num_blend span { font-size: 24px; line-height: 1em; font-style: italic; font-weight: bold; letter-spacing: 2px;}
- 
-h3.scaps { font-variant: small-caps; letter-spacing: -1px; font-size: 200%; font-family: "Courier New", Courier, 
-monospace; font-weight: 100;}
- 
-h3.gr { font-size: 500%; margin: 0; float: left; color: #999999; font-family: Impact, Arial, Verdana; text-transform: 
-uppercase; border-bottom: #CC0000 10px solid; font-weight: 100; }
-h3.gr2 { font-size: 500%; margin: 25px 0;color: #999999; float: left; font-family: Impact, Arial, Verdana; text-
-transform: uppercase; position: relative; font-weight: 100; }
- 
-h3.g { font-size: 500%; font-family: Georgia, "Times New Roman", Times, serif; font-weight: 100; float: left; margin: 
-0; color: #133BC1; }
-h3.o1 { font-size: 500%; font-family: Georgia, "Times New Roman", Times, serif; font-weight: 100; float: left; margin
-: 0; color: #E33B21; }
-h3.o2 { font-size: 500%; font-family: Georgia, "Times New Roman", Times, serif; font-weight: 100; float: left; margin
-: 0; color: #E6B500; }
-h3.l { font-size: 500%; font-family: Georgia, "Times New Roman", Times, serif; font-weight: 100; float: left; margin: 
-0; color: #4BCE54; }
-h3.lg { font-size: 500%; font-family: Georgia, "Times New Roman", Times, serif; font-weight: 100; float: left; margin
-: 0; color: #0048E3; }
-h3.e { font-size: 500%; font-family: Georgia, "Times New Roman", Times, serif; font-weight: 100; float: left; margin: 
-0; color: #E33B21; font-style: italic; }
- 
-.gray { background: #000000; padding: 20px; }
- 
-h3.gray2 { font-size: 200%; text-transform: uppercase; font-family: Garamond, Georgia, "Times New Roman"; 
-letter-spacing: .5em; font-weight: 100; color: #FFFFFF; border-top: 1px solid #CCCCCC; border-bottom: #CCCCCC 1px 
-solid; width: 600px; text-align: center; }
- 
-h3.fed { color: #660099; letter-spacing: -.08em; font-size: 500%; font-family: Verdana, Arial, Helvetica, sans-serif; }
-h3.fed span { color: #999999; margin: 0 0 0 -.1em; font-size: 105%; }
- 
-h3.y1 { float: left; font-size: 500%; font-family: Garamond, Georgia, "Times New Roman"; text-transform: uppercase; 
-margin: 0;
-font-weight: 0; color: #FF0000; }
- 
-h3.y2 { float: left; font-size: 350%; font-family: Garamond, Georgia, "Times New Roman"; text-transform: uppercase; 
-margin: 15px 0 0 -10px; font-weight: 0; color: #FF0000; }
- 
-h3.y3 { float: left; font-size: 350%; font-family: Garamond, Georgia, "Times New Roman"; text-transform: uppercase; 
-margin: 8px 0 0px -5px; font-weight: 0; color: #FF0000; }
- 
-h3.y4 { float: left; font-size: 300%; font-family: Garamond, Georgia, "Times New Roman"; text-transform: uppercase; 
-margin: 12px 0 0px -5px; font-weight: 0; color: #FF0000; }
- 
-h3.y5 { float: left; font-size: 350%; font-family: Garamond, Georgia, "Times New Roman"; text-transform: uppercase; 
-margin: 6px 0 0px -1px; font-weight: 0; color: #FF0000; }
- 
-h3.y6 { float: left; font-size: 350%; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 4px 0 0px -1px; font
--weight: 0; color: #FF0000; }
- 
-p.tag a { font-size: 85%; text-align: center; color: #FF3300; }
-p.tag a:hover { background: #FFFF66; }
- 
-</style>
-<script type="text/javascript" src="js/jquery-latest.js"></script>
-<script type="text/javascript" src="js/jquery.progressbar.min.js"></script>
-<script type="text/javascript">
 
-$(document).ready(function() {
-<?php
-    for ($i = count($ScoreArray)-1; $i >=0; $i--)
-    {
-    	echo '$("#pb'.$i.'").progressBar({ showText: false});';
-    }
-    ?>
-	
-});
-function newPopup(url) {
-	popupWindow = window.open(
-		url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-}
-function FirstIn(user)
-{
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL,cloudURL;
-	accent=$('input[name="RadioGroup"]:checked').val();
-	whichFile=document.getElementById("selectFile").value;
-	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
-	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
-	showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
-	cloudURL="/SG/step7_cloud.php?URL=./userdata/"+user+"/upload"+whichFile;
-	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
-	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
-	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
-	//document.getElementById("picURL").innerHTML=picURL;
-	document.getElementById("fightingURL").setAttribute('href',fightingURL);
-	document.getElementById("showURL").setAttribute('href',showURL);
-	document.getElementById("cloudURL").setAttribute('href',cloudURL);
-	//document.getElementById("fightingURL").innerHTML=fightingURL;
-	document.getElementById("downWordURL").setAttribute('href',downWordURL);
-	document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
-}
-function ChangeUrl(user)
-{
-	var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL,cloudURL;
-	accent=$('input[name="RadioGroup"]:checked').val();
-	whichFile=document.getElementById("selectFile").value;
-	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
-	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
-	showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
-	cloudURL="/SG/step7_cloud.php?URL=./userdata/"+user+"/upload"+whichFile;
-	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
-	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
-	document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
-	
-	//document.getElementById("picURL").innerHTML=picURL;
-	document.getElementById("fightingURL").setAttribute('href',fightingURL);
-	document.getElementById("showURL").setAttribute('href',showURL);
-	document.getElementById("cloudURL").setAttribute('href',cloudURL);
-	//document.getElementById("fightingURL").innerHTML=fightingURL;
-	document.getElementById("downWordURL").setAttribute('href',downWordURL);
-	document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
-}
+			/* Green Color Scheme ------------------------ */
 
+			.green .button{
+			color:#fff;
+			text-shadow:1px 1px 0px #6b7735;
+			background:#7d8f33;
+			background:-moz-linear-gradient(top, #93aa4c 0%, #7d8f33 100%);
+			background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#93aa4c), color-stop(100%,#7d8f33));
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#93aa4c', endColorstr='#7d8f33',GradientType=0);
+			border-color:#6b7735;
+			}
+
+			.green:hover .button{
+			background:#93aa4c;
+			background:-moz-linear-gradient(top, #7d8f33 0%, #93aa4c 100%);
+			background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d8f33), color-stop(100%,#93aa4c));
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d8f33', endColorstr='#93aa4c',GradientType=0);
+			}
+
+			.Mybutton {
+                border: 1px solid #006;
+                background: #ccf;
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border-radius: 4px;
+                -moz-box-shadow: 2px 2px 3px #666;
+                -webkit-box-shadow: 2px 2px 3px #666;
+                box-shadow: 1px 1px 1px #666;
+                font-size: 12px;
+                padding: 4px 7px;
+                outline: 0;
+                -webkit-appearance: none;
+            }
+            .Mybutton:hover {
+                border: 1px solid #f00;
+                background: #eef;
+            }
+
+            
+        </style>
+        <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="js/jquery.progressbar.min.js"></script>
+        <script type="text/javascript">
+
+
+		$(document).ready(function() {
+		$("input[type=file]").change(function(){$(this).parents(".uploader").find(".filename").val($(this).val());});
+		$("input[type=file]").each(function(){
+		if($(this).val()==""){$(this).parents(".uploader").find(".filename").val("No file selected...");}
+		});
+		<?php
+		    for ($i = count($ScoreArray)-1; $i >=0; $i--)
+		    {
+		    	echo '$("#pb'.$i.'").progressBar({ showText: false});';
+		    }
+		    ?>
 			
-			
-</script>		
-</head> 
-
-<body onload=FirstIn(<?php echo '"'.$_SESSION['user'].'"';?>)>
-	
-<h3 class="g">F</h3><h3 class="o1">o</h3><h3 class="o2">r</h3><h3 class="l">&nbspS</h3><h3 class="o2">h
-</h3> <h3 class="e">e</h3><h3 class="o2">l</h3><h3 class="l">l</h3><h3 class="e">e</h3>
-<h3 class="g">y</h3>
- 
-<br style="clear: both;" /> 
-<br style="clear: both;" /> 
-
- <dl>
-      <dt class="reflect">Ranking</dt> 
-     
-      <dd> 
-        <table>
-        <?php 
-        $BarArray=array();
-        $TopScore=0;
-        for ($i = count($ScoreArray)-1; $i >=0; $i--) 
-		{
-			
-			$eachScore=substr($ScoreArray[$i],0,strpos($ScoreArray[$i],'/'));
-			
-			if($i == count($ScoreArray)-1)
-				$TopScore=intval($eachScore);
-			if($TopScore!=0)
-				$BarArray[count($ScoreArray)-$i-1]=intval($eachScore)*100/$TopScore;
-			else
-				$BarArray[count($ScoreArray)-$i-1]=0;
-			
-			
+		});
+		function newPopup(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 		}
-        for ($i = count($ScoreArray)-1; $i >=0; $i--) 
+		function FirstIn(user)
 		{
-			$eachUser=substr(strrchr($ScoreArray[$i],"/"),1);
-			if($_SESSION['user']==$eachUser)
-				$_SESSION['ranking']=count($ScoreArray)-$i;
-			$eachScore=substr($ScoreArray[$i],0,strpos($ScoreArray[$i],'/'));
+			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
+			accent=$('input[name="RadioGroup"]:checked').val();
+			whichFile=document.getElementById("selectFile").value;
+			picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
+			fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
+			showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
 			
-			echo '<tr><td><p class="handwriting">'.$eachUser.'</p> </td><td><span class="progressBar" id="pb'.$i.'">'.$BarArray[count($ScoreArray)-$i-1].'%</span>'.$eachScore.'</td></tr>';
-			
+			downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
+			downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
+			document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
+			document.getElementById("fightingURL").setAttribute('href',fightingURL);
+			document.getElementById("showURL").setAttribute('href',showURL);
+
+			document.getElementById("downWordURL").setAttribute('href',downWordURL);
+			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
 		}
-		?>	
+		function ChangeUrl(user)
+		{
+			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
+			accent=$('input[name="RadioGroup"]:checked').val();
+			whichFile=document.getElementById("selectFile").value;
+			picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
+			fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
+			showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
+			
+			downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
+			downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
+			document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
+			
+			document.getElementById("fightingURL").setAttribute('href',fightingURL);
+			document.getElementById("showURL").setAttribute('href',showURL);
+		
+			document.getElementById("downWordURL").setAttribute('href',downWordURL);
+			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
+		}
+		
+		</script>
+
+    </head>
+    
+    <body onload=FirstIn(<?php echo '"'.$_SESSION['user'].'"';?>)>
+        <div id="page-wrap">
+            	<h1>S<span>G</span></h1>
+
+            
+            <fieldset id="ranking">
+                    <legend>RANKING</legend>
+                    <table>
+		        <?php 
+		        $BarArray=array();
+		        $TopScore=0;
+		        for ($i = count($ScoreArray)-1; $i >=0; $i--) 
+				{
+					
+					$eachScore=substr($ScoreArray[$i],0,strpos($ScoreArray[$i],'/'));
+					
+					if($i == count($ScoreArray)-1)
+						$TopScore=intval($eachScore);
+					if($TopScore!=0)
+						$BarArray[count($ScoreArray)-$i-1]=intval($eachScore)*100/$TopScore;
+					else
+						$BarArray[count($ScoreArray)-$i-1]=0;
+					
+					
+				}
+		        for ($i = count($ScoreArray)-1; $i >=0; $i--) 
+				{
+					$eachUser=substr(strrchr($ScoreArray[$i],"/"),1);
+					if($_SESSION['user']==$eachUser)
+						$_SESSION['ranking']=count($ScoreArray)-$i;
+					$eachScore=substr($ScoreArray[$i],0,strpos($ScoreArray[$i],'/'));
+					
+					echo '<tr><td><p>'.$eachUser.'</p> </td><td><span class="progressBar" id="pb'.$i.'">'.$BarArray[count($ScoreArray)-$i-1].'%</span>'.$eachScore.'</td></tr>';
+					
+				}
+				?>	
 				</table>
-        
-      </dd> 
-    </dl> 
-    <br style="clear: both;" /> 
-    <dl>
-      <dt class="reflect">Step.1 upload word file</dt> 
-      
-      <dd> 
-      <p class="handwriting">1.Prepare your word file like this:</p> 
-			<img src="pic/demo.jpg"  alt="This is a demo" />
-			<p class="handwriting">2.Now you can upload it</p>
-      <form action="step1_upload_file.php" method="post"
-enctype="multipart/form-data">
+                </fieldset>
+                
+                <fieldset id="step_1">
+                    <legend>IMPORT YOUR WORDS</legend>
+                    <p>1.Prepare your word file like this:</p> 
+					<img src="pic/demo.jpg"  alt="This is a demo" />
+					</br>
+					</br>
+					</br>
+					<p>2.Now you can upload it</p>
+				    <form action="step1_upload_file.php" method="post"
+				enctype="multipart/form-data">
 
-<input type="file" name="file" id="file"><br>
-<input type="submit" name="submit" value="Submit">
-</form>
-        
-       
-      </dd> 
-    </dl> 
-    <br style="clear: both;" /> 
+					
+					
+					<div class="uploader green">
+<input type="text" class="filename" readonly="readonly"/>
+<input type="button" name="file" class="button" value="Browse..."/>
+<input type="file" name="file" id="file" size="30"/>
+</div><input type="submit" name="submit" value="Submit" class="Mybutton">
 
-    <dl>
-      <dt class="reflect">Step.2 choose an input file</dt> 
-      
-      <dd>
-      <p class="handwriting">
-      <select id='selectFile' ONCHANGE=ChangeUrl(<?php echo '"'.$_SESSION['user'].'"';?>)>
-            
-            
-            <?php
-                foreach(glob('./userdata/'.$_SESSION['user'].'/upload/*.txt') as $filename){
-                ?>
-                    <option value="<?php echo strrchr($filename,"/"); ?>">
-                                         <?php echo strrchr($filename,"/");?>
-                    </option>
-                <?php
-                }
-                ?>
-            </select>
-        </p>
-      </dd> 
-    </dl> 
-    <br style="clear: both;" /> 
-    
-    <dl>
-      <dt class="reflect">Step.3 choose demonstrational pictures for your words</dt> 
-      
-      <dd>
+					</form>
 
-        <p class="handwriting"><a id='picURL' href="">Go!</a></p> 
-        
-      </dd> 
-    </dl> 
-    <br style="clear: both;" /> 
+				
+					</br>
+					</br>
+					</br>
 
-	<dl>
-      <dt class="reflect">Step.4 choose accent</dt> 
-      
-      <dd>
-<p class="handwriting">
-        <input type="radio" name="RadioGroup" value="1" checked="checked" ONCLICK=ChangeUrl(<?php echo '"'.$_SESSION['user'].'"';?>) />British Accent
+					<p>3.choose an input file</p>
+					<p>
+			      		<select id='selectFile' ONCHANGE=ChangeUrl(<?php echo '"'.$_SESSION['user'].'"';?>)>
+			            
+			            
+			            <?php
+			                foreach(glob('./userdata/'.$_SESSION['user'].'/upload/*.txt') as $filename){
+			                ?>
+			                    <option value="<?php echo strrchr($filename,"/"); ?>">
+			                                         <?php echo strrchr($filename,"/");?>
+			                    </option>
+			                <?php
+			                }
+			                ?>
+			            </select>
+			        </p>
+                </fieldset>
+                
+                <fieldset id="step_2">
+                    <legend>SHOOTING GAME</legend>
+                    <p>1.choose demonstrational pictures for your words</p>
+                    <p><a id='picURL' href="">Go!</a></p>
+                    </br>
+                    <p>2.choose accent</p>
+                    <p>
+                    <input type="radio" name="RadioGroup" value="1" checked="checked" ONCLICK=ChangeUrl(<?php echo '"'.$_SESSION['user'].'"';?>) />British Accent
 <input type="radio" name="RadioGroup" value="2" ONCLICK=ChangeUrl(<?php echo '"'.$_SESSION['user'].'"';?>) />American Accent
-</p> 
-        
-      </dd> 
-    </dl> 
-    <br style="clear: both;" /> 
-    
+					</p>
+					</br>
+					<p>3.fighting</p>
+					<p><a id='fightingURL' href="">Go!</a></p>
+					</br>
+					<p>Bonus.after 3,you can download word/sentence sound for dictation</p>
+					<p><a id='downWordURL' href="">word</a></p>
+					<p><a id='downSentenceURL' href="">sentence</a></p> 
 
-    <dl>
-      <dt class="reflect">Step.5 fighting!</dt> 
-     
-      <dd> 
-        <p class="handwriting"><a id='fightingURL' href="">Go!</a></p> 
-        
-      </dd> 
-    </dl> 
-    <br style="clear: both;" /> 
+						
+                    
+                </fieldset>
+                
+                <fieldset id="step_3">
+                    <legend>SYNONYM GAME</legend>
+                    <p><a id='showURL' href="">Go!</a></p>
+                </fieldset>
+           
+        </div>
+    </body>
 
-	<dl>
-      <dt class="reflect">Bonus.1 download word/sentence sound(for dictation)</dt> 
-     
-      <dd> 
-        <p class="handwriting"><a id='downWordURL' href="">word</a></p> 
-        
-      </dd> 
-      <dd> 
-        <p class="handwriting"><a id='downSentenceURL' href="">sentence</a></p> 
-        
-      </dd>
-    </dl> 
-    <br style="clear: both;" /> 
-    <dl>
-      <dt class="reflect">Bonus.2 words show</dt> 
-      <dd> 
-      <p class="handwriting"><a id='showURL' href="">Go!</a></p> 
-        
-      </dd> 
-      
-    </dl> 
-    <br style="clear: both;" /> 
-
-	<dl>
-      <dt class="reflect">Bonus.3 synonymic cloud</dt> 
-      <dd> 
-      <p class="handwriting"><a id='cloudURL' href="">Go!</a></p> 
-        
-      </dd> 
-      
-    </dl> 
-    <br style="clear: both;" /> 
-
-    
-
-    
-
-</body></html>
+</html>

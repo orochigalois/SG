@@ -143,6 +143,21 @@ if(!$_SESSION['user'])
             .step-two #form {
                 display:block;
             }
+			#R {
+                background: url(pic/right.png)  no-repeat;
+				height:100px;
+				width:100px;
+				margin: 30px auto;
+				display:none;
+            }
+			#W {
+                background: url(pic/wrong.png)  no-repeat;
+				height:100px;
+				width:100px;
+				margin: 30px auto;
+				display:none;
+			
+            }
         </style>
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script src="js/jquery.lettering.js"></script>
@@ -150,8 +165,11 @@ if(!$_SESSION['user'])
         <script>
             var index = 0;
             var syn_arr;
+			var CurrentUserScore;
+			var CurrentUser;
             $(function () {
-
+				CurrentUserScore=parseInt(document.getElementById("score").innerHTML);
+				CurrentUser=document.getElementById("user").innerHTML;
 
                 var txt = "<div id=\"poster\"><h1>" + $("tr")[index].children[0].innerHTML + "</h1><p>" + $("tr")[index].children[1].innerHTML +
                     "</p></div>";
@@ -192,42 +210,66 @@ if(!$_SESSION['user'])
                                 pass = true;
 	                        }
 	                        if (pass) {
-	                            index++;
-								$("#syn")[0].value="";
-								$('#promptButton').css({
+								$('#W').css({
 	                                    display: 'none',
 	                                });
-								$('#myCanvasContainer').css({
+								$('#R').css({
+	                                    display: 'block',
+	                                });
+								
+								setTimeout(function () {
+	                                $('#R').css({
 	                                    display: 'none',
 	                                });
-	                            $("#poster").remove();
-	                            $("html").removeClass("step-one");
-	                            $("html").removeClass("step-two");
-								if (index == $("tr").length)
-	                                index = 0;
-	                            var txt = "<div id=\"poster\"><h1>" + $("tr")[index].children[0].innerHTML + "</h1><p>" + $("tr")[index].children[1].innerHTML +
-	                                "</p></div>";
-	                            
-	                            $("#word").append(txt);
-	                            $("#poster h1, #poster p").lettering();
-	                            $("#poster p span").each(function () {
-	                                $(this).css({
-	                                    top: -(Math.floor(Math.random() * 1001) + 1500),
-	                                    left: Math.floor(Math.random() * 1001) - 500,
-	                                });
-	                            });
-	                            setTimeout(function () {
-	                                $('html').addClass("step-one");
-	                            }, 500);
-	                            setTimeout(function () {
-	                                $('html').addClass("step-two");
-	                            }, 2000);
+									CurrentUserScore+=1;
+									$.post("step4_update_score_in_game.php", { score: CurrentUserScore, user: CurrentUser } );
+		                            index++;
+									$("#syn")[0].value="";
+									$('#promptButton').css({
+		                                    display: 'none',
+		                                });
+									$('#myCanvasContainer').css({
+		                                    display: 'none',
+		                                });
+		                            $("#poster").remove();
+		                            $("html").removeClass("step-one");
+		                            $("html").removeClass("step-two");
+									if (index == $("tr").length)
+		                                index = 0;
+		                            var txt = "<div id=\"poster\"><h1>" + $("tr")[index].children[0].innerHTML + "</h1><p>" + $("tr")[index].children[1].innerHTML +
+		                                "</p></div>";
+		                            
+		                            $("#word").append(txt);
+		                            $("#poster h1, #poster p").lettering();
+		                            $("#poster p span").each(function () {
+		                                $(this).css({
+		                                    top: -(Math.floor(Math.random() * 1001) + 1500),
+		                                    left: Math.floor(Math.random() * 1001) - 500,
+		                                });
+		                            });
+		                            setTimeout(function () {
+		                                $('html').addClass("step-one");
+		                            }, 500);
+		                            setTimeout(function () {
+		                                $('html').addClass("step-two");
+		                            }, 2000);
+	                            }, 1000);
+								
 	                        } else {
 	                        	$('#promptButton').css({
 	                                    display: 'inline',
 	                                });
+								$('#W').css({
+	                                    display: 'block',
+	                                });
 								
-	                            alert("Wrong,please try again");
+//								setTimeout(function () {
+//	                                $('#W').css({
+//	                                    display: 'none',
+//	                                });
+//	                            }, 1000);
+								
+	                            
 								
 	                        }
                         } catch (err) {
@@ -245,6 +287,9 @@ if(!$_SESSION['user'])
 
 
                 $("#promptButton").click(function () {
+					$('#W').css({
+	                                display: 'none',
+	                            });
 					$('#myCanvasContainer').css({
                                     display: 'block',
                                 });
@@ -252,7 +297,7 @@ if(!$_SESSION['user'])
                     $("#tags").remove();
                     var txt = "<div id=\"tags\"><ul>";
                     for (var i = 0; i < syn_arr.length; i++) {
-                        txt = txt + "<li><a href=\"/fish\">" + syn_arr[i] + "</a></li>"
+                        txt = txt + "<li><a href=\"http://dict.cn/"+syn_arr[i]+"\">" + syn_arr[i] + "</a></li>"
                     }
                     txt = txt + "</ul></div>";
                     $("body").append(txt);
@@ -309,6 +354,20 @@ if(!$_SESSION['user'])
     </head>
     
     <body>
+	    <div id='user' style="display:none"><?php 
+		echo $_SESSION['user'];
+		?></div>
+	    <div id='score' style="display:none">
+		<?php 
+		$file="./userdata/".$_SESSION['user']."/score.txt";
+		$fh = fopen($file, 'r');
+		$theScore = fread($fh, filesize($file));
+		fclose($fh);
+
+		echo $theScore;
+
+		?>
+		</div>
         <table style="display:none">
             <?php
             $myFile=$_GET["URL"];
@@ -328,11 +387,15 @@ if(!$_SESSION['user'])
         </table>
         <div id="word"></div>
         <div align="center" id="form">
-            <input type="text" id="syn" class="input" />
+        
+            <input type="text" placeholder="Type a synonym" id="syn" class="input" />
             <input type="submit" value="Go" id="go" class="button" />
             <input type="submit" value="Prompt" id="promptButton" class="button" style="display:none"/>
         </div>
+        <div id="W"></div>
+        <div id="R"></div>
         <div id="myCanvasContainer" align="center">
+        
             <canvas id="myCanvas" width="580" height="250" style="">
                 <p>Anything in here will be replaced on browsers that support the canvas element</p>
             </canvas>
