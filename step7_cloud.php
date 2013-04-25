@@ -13,19 +13,20 @@ if(!$_SESSION['user'])
     <script type="text/javascript">
       window.onload = function() {
         try {
-          TagCanvas.Start('myCanvas','tags',{
-		  	
-            textColour: '#ff0000',
-            outlineColour: '#ff00ff',
-            reverse: true,
-            depth: 0.8,
-            maxSpeed: 0.5,
-            shape: "hring",
-  lock: "x",
-  textFont: 'Impact,"Arial Black",sans-serif',
- textColour: '#00f',
- textHeight: 25,
-          });
+			var o = {
+  textFont: 'Arial, Helvetica, sans-serif', maxSpeed: 0.05, minSpeed: 0.01,
+  textColour: '#900', textHeight: 25, outlineMethod: 'colour',
+  outlineColour: '#039', outlineOffset: 0, depth: 0.97, minBrightness: 0.2,
+  wheelZoom: false, reverse: true, shadowBlur: 2, shuffleTags: true,
+  shadowOffset: [1,1], stretchX: 1.7, initial: [0,0.1]
+};
+			
+			var s = (new Date).getTime() / 360;
+  o.initial[0] = 0.2 * Math.cos(s);
+  o.initial[1] = 0.2 * Math.sin(s);
+
+  TagCanvas.Start('myCanvas','tags',o);
+          
         } catch(e) {
           // something went wrong, hide the canvas container
           document.getElementById('myCanvasContainer').style.display = 'none';
@@ -36,7 +37,9 @@ if(!$_SESSION['user'])
   <body>
     <h1>TagCanvas example page</h1>
     <div id="myCanvasContainer">
-      <canvas width="300" height="300" id="myCanvas">
+      
+      <canvas id="myCanvas" width="580" height="250" style="">
+	
         <p>Anything in here will be replaced on browsers that support the canvas element</p>
       </canvas>
     </div>

@@ -175,7 +175,7 @@ function FirstIn(user)
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
 	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
-	showURL="/SG/step6_word_show.php?URL=./userdata/"+user+"/upload"+whichFile;
+	showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
 	cloudURL="/SG/step7_cloud.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
@@ -195,7 +195,7 @@ function ChangeUrl(user)
 	whichFile=document.getElementById("selectFile").value;
 	picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
 	fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
-	showURL="/SG/step6_word_show.php?URL=./userdata/"+user+"/upload"+whichFile;
+	showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
 	cloudURL="/SG/step7_cloud.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 	downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
