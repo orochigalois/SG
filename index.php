@@ -85,7 +85,7 @@ usort($ScoreArray, "my_sort");
                 padding: 15px;
                 float: left;
                 border: none;
-                margin: 0 10px 0 0;
+                margin: 10px 10px 0 0;
             }
 			fieldset#ranking {
                 background: #FFF06A;
@@ -98,6 +98,9 @@ usort($ScoreArray, "my_sort");
             }
             fieldset#step_3 {
                 background: #e7c7b2;
+            }
+			fieldset#step_4 {
+                background: #FFCCFF;
             }
             legend {
                 font-weight: bold;
@@ -415,6 +418,11 @@ usort($ScoreArray, "my_sort");
                 
                 <fieldset id="step_3">
                     <legend>SYNONYM GAME</legend>
+                    <p><a id='showURL' href="">Go!</a></p>
+                </fieldset>
+
+				<fieldset id="step_4">
+                    <legend>COMPOSITION GAME</legend>
                     <p><a id='showURL' href="">Go!</a></p>
                 </fieldset>
            
