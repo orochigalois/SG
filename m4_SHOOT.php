@@ -104,7 +104,7 @@ echo $_SESSION['ranking'];
    
 <!--script src="http://code.jquery.com/jquery-latest.js"></script-->
 <script src="./js/jquery-latest.js"></script>
-<script src="./js/WebResource.js" type="text/javascript"></script>
+<script src="./js/shooting.js" type="text/javascript"></script>
 
     		
     		<div style="position: absolute; z-index: 10; top: 90px; left: 20px; background-color: #25272b; height: 52px;">

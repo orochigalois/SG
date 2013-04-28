@@ -197,7 +197,7 @@ if(!$_SESSION['user'])
 
                     pass = false;
 
-                    $.post("step6_SYN_get_from_bighugelabs.php", {
+                    $.post("m6_X_get_from_bighugelabs.php", {
                         word: $("tr")[index].children[0].innerHTML,
 
 
@@ -222,7 +222,7 @@ if(!$_SESSION['user'])
 	                                    display: 'none',
 	                                });
 									CurrentUserScore+=1;
-									$.post("step4_update_score_in_game.php", { score: CurrentUserScore, user: CurrentUser } );
+									$.post("m4_X_update_score_in_game.php", { score: CurrentUserScore, user: CurrentUser } );
 		                            index++;
 									$("#syn")[0].value="";
 									$('#promptButton').css({

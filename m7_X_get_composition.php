@@ -2,7 +2,7 @@
 include_once('./common.php');
 
 $myFile = $_POST["compositionfile"];
-$url="JavaScript:newPopup1(\"/SG/step7_edit_composition.php?WURL=".$_POST["wordfile"]."&URL=".$_POST["compositionfile"]."\");";
+$url="JavaScript:newPopup1(\"/SG/m7_COMPOSITION.php?WURL=".$_POST["wordfile"]."&URL=".$_POST["compositionfile"]."\");";
 if(!file_exists($myFile))
 {
 	$compositionData="<a href='".$url."'>Write a composition using your words</a>";

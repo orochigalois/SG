@@ -222,7 +222,7 @@ if(!$_SESSION['user'])
                             tag = ee[2];
                         if (tag == "img") {
                             me.hide();
-                            $.post("step3_save_picture_to_server.php", {
+                            $.post("m3_X_save_picture_to_server.php", {
                                 picName: me.currentWord,
                                 picURL: ee[1].attributes[0].value
                             }, function (data, status) {
@@ -238,7 +238,7 @@ if(!$_SESSION['user'])
                             case "next":
                                 me.page++;
 
-                                $.post("step3_get_pic_from_bingAPI.php", {
+                                $.post("m3_X_get_pic_from_bingAPI.php", {
                                     picName: me.currentWord,
                                     page: me.page
 
@@ -260,7 +260,7 @@ if(!$_SESSION['user'])
                                 if (me.page > 1) {
                                     me.page--;
 
-                                    $.post("step3_get_pic_from_bingAPI.php", {
+                                    $.post("m3_X_get_pic_from_bingAPI.php", {
                                         //picName: $("#currentWord").html(),
                                         picName: me.currentWord,
                                         page: me.page
@@ -500,7 +500,7 @@ if(!$_SESSION['user'])
 					myDialog.currentImgID=$(this)[0].parentNode.childNodes[1].children[0].id;
 
                     $('.eachLine').css('cursor', 'wait');
-                    $.post("step3_get_pic_from_bing.php", {
+                    $.post("m3_X_get_pic_from_bing.php", {
                         word: myDialog.currentWord
                     }, function (data, status) {
                         $('.eachLine').css('cursor', 'default');

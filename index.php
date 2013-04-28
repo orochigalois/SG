@@ -297,12 +297,12 @@ usort($ScoreArray, "my_sort");
 			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
 			accent=$('input[name="RadioGroup"]:checked').val();
 			whichFile=document.getElementById("selectFile").value;
-			picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
-			fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
-			showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
+			picURL="/SG/m3_PICTURE.php?URL=./userdata/"+user+"/upload"+whichFile;
+			fightingURL="/SG/m4_SHOOT.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
+			showURL="/SG/m6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
 			
-			downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
-			downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
+			downWordURL="/SG/m5_DICTATION_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
+			downSentenceURL="/SG/m5_DICTATION_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 
 
 		
@@ -312,13 +312,13 @@ usort($ScoreArray, "my_sort");
 
 			document.getElementById("downWordURL").setAttribute('href',downWordURL);
 			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
-			$.post("step7_get_composition.php", {
+			$.post("m7_X_get_composition.php", {
                         compositionfile: "./userdata/"+user+"/composition"+whichFile,
 						wordfile: "./userdata/"+user+"/upload"+whichFile
                     }, function (data, status) {
                     $("#composition").html(data); 
                         });
-			$.post("step7_get_word_list.php", {
+			$.post("m7_X_get_word_list.php", {
 						wordfile: "./userdata/"+user+"/upload"+whichFile
                     }, function (data, status) {
                     $("#wordlist").html(data); 
@@ -330,12 +330,12 @@ usort($ScoreArray, "my_sort");
 			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
 			accent=$('input[name="RadioGroup"]:checked').val();
 			whichFile=document.getElementById("selectFile").value;
-			picURL="/SG/step3_choose_picture.php?URL=./userdata/"+user+"/upload"+whichFile;
-			fightingURL="/SG/step4_fighting.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
-			showURL="/SG/step6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
+			picURL="/SG/m3_PICTURE.php?URL=./userdata/"+user+"/upload"+whichFile;
+			fightingURL="/SG/m4_SHOOT.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
+			showURL="/SG/m6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
 			
-			downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
-			downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
+			downWordURL="/SG/m5_DICTATION_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
+			downSentenceURL="/SG/m5_DICTATION_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
 			
 			
 			
@@ -346,13 +346,13 @@ usort($ScoreArray, "my_sort");
 		
 			document.getElementById("downWordURL").setAttribute('href',downWordURL);
 			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
-			$.post("step7_get_composition.php", {
+			$.post("m7_X_get_composition.php", {
                         compositionfile: "./userdata/"+user+"/composition"+whichFile,
 						wordfile: "./userdata/"+user+"/upload"+whichFile
                     }, function (data, status) {
                     $("#composition").html(data); 
                         });
-			$.post("step7_get_word_list.php", {
+			$.post("m7_X_get_word_list.php", {
 						wordfile: "./userdata/"+user+"/upload"+whichFile
                     }, function (data, status) {
                     $("#wordlist").html(data); 
@@ -411,7 +411,7 @@ usort($ScoreArray, "my_sort");
 					</br>
 					</br>
 					<p>2.Now you can upload it</p>
-				    <form action="step1_upload_file.php" method="post"
+				    <form action="m2_UPLOAD_FILE.php" method="post"
 				enctype="multipart/form-data">
 
 					

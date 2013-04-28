@@ -1513,7 +1513,7 @@ L.module('impact.entity').requires('impact.animation','impact.font', 'impact.imp
 				 CurrentSound=new L.Sound('./userdata/'+CurrentUser+'/word/'+word+'.ogg');
 				 CurrentSound.play();
 				 CurrentUserScore += 1;
-				 $.post("step4_update_score_in_game.php", { score: CurrentUserScore, user: CurrentUser } );
+				 $.post("m4_X_update_score_in_game.php", { score: CurrentUserScore, user: CurrentUser } );
             	 L.game.ShowSentenceNow=1;
                 this.kill();
                 
@@ -2168,7 +2168,7 @@ L.module('game.words').defines(function() {
 	
     
 	//$.ajaxSettings.async = false;
-    $.getJSON("/SG/step4_get_words_in_game.php",function(result){
+    $.getJSON("/SG/m4_X_get_words_in_game.php",function(result){
 	      $.each(result, function(i, field){
 		  	if(field.wordcount)
 				TotalWordCount=field.wordcount;
