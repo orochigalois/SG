@@ -244,6 +244,12 @@ usort($ScoreArray, "my_sort");
                 border: 1px solid #f00;
                 background: #eef;
             }
+			code {
+			
+			color: #d14;
+			background-color: rgb(240, 250, 5);
+			border: 1px solid #e1e1e8;
+			}
 
             
         </style>
@@ -251,8 +257,8 @@ usort($ScoreArray, "my_sort");
         <script type="text/javascript" src="js/jquery.progressbar.min.js"></script>
         <script type="text/javascript">
 
-
 		$(document).ready(function() {
+		
 		$("input[type=file]").change(function(){$(this).parents(".uploader").find(".filename").val($(this).val());});
 		$("input[type=file]").each(function(){
 		if($(this).val()==""){$(this).parents(".uploader").find(".filename").val("No file selected...");}
@@ -269,8 +275,25 @@ usort($ScoreArray, "my_sort");
 			popupWindow = window.open(
 				url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 		}
+		function newPopup1(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=500,width=516,left=300,top=300,resizable=no,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=no')
+		}
 		function FirstIn(user)
 		{
+			
+			$('#selectFile')[0].selectedIndex=<?php 
+			if(isset($_GET["s"]))
+				echo $_GET["s"];
+			else
+				echo "0";
+
+			?>
+				;
+			$('#selectFile').change(function() {
+				locArr=location.href.split("&");
+			    window.location = locArr[0]+"&s=" + $(this)[0].selectedIndex;
+			});
 			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
 			accent=$('input[name="RadioGroup"]:checked').val();
 			whichFile=document.getElementById("selectFile").value;
@@ -280,12 +303,27 @@ usort($ScoreArray, "my_sort");
 			
 			downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 			downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
+
+
+		
 			document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
 			document.getElementById("fightingURL").setAttribute('href',fightingURL);
 			document.getElementById("showURL").setAttribute('href',showURL);
 
 			document.getElementById("downWordURL").setAttribute('href',downWordURL);
 			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
+			$.post("step7_get_composition.php", {
+                        compositionfile: "./userdata/"+user+"/composition"+whichFile,
+						wordfile: "./userdata/"+user+"/upload"+whichFile
+                    }, function (data, status) {
+                    $("#composition").html(data); 
+                        });
+			$.post("step7_get_word_list.php", {
+						wordfile: "./userdata/"+user+"/upload"+whichFile
+                    }, function (data, status) {
+                    $("#wordlist").html(data); 
+                        });
+		
 		}
 		function ChangeUrl(user)
 		{
@@ -298,6 +336,9 @@ usort($ScoreArray, "my_sort");
 			
 			downWordURL="/SG/step5_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 			downSentenceURL="/SG/step5_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
+			
+			
+			
 			document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
 			
 			document.getElementById("fightingURL").setAttribute('href',fightingURL);
@@ -305,6 +346,18 @@ usort($ScoreArray, "my_sort");
 		
 			document.getElementById("downWordURL").setAttribute('href',downWordURL);
 			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
+			$.post("step7_get_composition.php", {
+                        compositionfile: "./userdata/"+user+"/composition"+whichFile,
+						wordfile: "./userdata/"+user+"/upload"+whichFile
+                    }, function (data, status) {
+                    $("#composition").html(data); 
+                        });
+			$.post("step7_get_word_list.php", {
+						wordfile: "./userdata/"+user+"/upload"+whichFile
+                    }, function (data, status) {
+                    $("#wordlist").html(data); 
+                        });
+			
 		}
 		
 		</script>
@@ -392,6 +445,11 @@ usort($ScoreArray, "my_sort");
 			                ?>
 			            </select>
 			        </p>
+			        </br>
+					</br>
+					</br>
+			        <p>***WORD LIST***</p>
+			        <p id="wordlist"></p>
                 </fieldset>
                 
                 <fieldset id="step_2">
@@ -423,7 +481,9 @@ usort($ScoreArray, "my_sort");
 
 				<fieldset id="step_4">
                     <legend>COMPOSITION GAME</legend>
-                    <p><a id='showURL' href="">Go!</a></p>
+                    <p id="composition"></p>
+                    
+	
                 </fieldset>
            
         </div>
