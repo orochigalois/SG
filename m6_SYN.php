@@ -379,17 +379,20 @@ if(!$_SESSION['user'])
 			for ($i=0 ; $i < count($word_array); $i++)
 			{
 				$word_array1=explode( "...", $word_array[$i]);
-		
+		/*remove_definition
 				$url="http://www.stands4.com/services/v2/defs.php?uid=2773&tokenid=abbiMdmcWrNIqRFu&word=".$word_array1[0];
 				
 				$data=curl_return_string($url);
 				$str=strstr($data,'<definition>');
 				$str1=substr($str,0,strpos($str,"</definition>"));
 				$defination=substr($str1,12);
-
+		*/
 				echo '<tr><td>'.$word_array1[0].
 					'</td><td>'.
+					$word_array1[1]. '</td></tr>';
+					/*remove_definition 
 					$defination. '</td></tr>';
+					*/
 			}
 			?>
         </table>
