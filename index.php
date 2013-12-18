@@ -102,6 +102,9 @@ usort($ScoreArray, "my_sort");
 			fieldset#step_4 {
                 background: #FFCCFF;
             }
+			fieldset#step_5 {
+                background: #FFF06A;
+            }
             legend {
                 font-weight: bold;
                 font-size: 20px;
@@ -294,12 +297,13 @@ usort($ScoreArray, "my_sort");
 				locArr=location.href.split("&");
 			    window.location = locArr[0]+"&s=" + $(this)[0].selectedIndex;
 			});
-			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
+			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL,sentenceURL;
 			accent=$('input[name="RadioGroup"]:checked').val();
 			whichFile=document.getElementById("selectFile").value;
 			picURL="/SG/m3_PICTURE.php?URL=./userdata/"+user+"/upload"+whichFile;
 			fightingURL="/SG/m4_SHOOT.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
 			showURL="/SG/m6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
+			sentenceURL="/SG/m8_SENTENCE.php?URL=./userdata/"+user+"/upload"+whichFile;
 			
 			downWordURL="/SG/m5_DICTATION_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 			downSentenceURL="/SG/m5_DICTATION_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
@@ -309,6 +313,7 @@ usort($ScoreArray, "my_sort");
 			document.getElementById("picURL").setAttribute('href',"JavaScript:newPopup('"+picURL+"');");
 			document.getElementById("fightingURL").setAttribute('href',fightingURL);
 			document.getElementById("showURL").setAttribute('href',showURL);
+			document.getElementById("sentenceURL").setAttribute('href',sentenceURL);
 
 			document.getElementById("downWordURL").setAttribute('href',downWordURL);
 			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
@@ -327,12 +332,13 @@ usort($ScoreArray, "my_sort");
 		}
 		function ChangeUrl(user)
 		{
-			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL;
+			var whichFile,fightingURL,picURL,downWordURL,downSentenceURL,accent,showURL,sentenceURL;
 			accent=$('input[name="RadioGroup"]:checked').val();
 			whichFile=document.getElementById("selectFile").value;
 			picURL="/SG/m3_PICTURE.php?URL=./userdata/"+user+"/upload"+whichFile;
 			fightingURL="/SG/m4_SHOOT.php?URL=./userdata/"+user+"/upload"+whichFile+"&ACCENT="+accent;
 			showURL="/SG/m6_SYN.php?URL=./userdata/"+user+"/upload"+whichFile;
+			sentenceURL="/SG/m8_SENTENCE.php?URL=./userdata/"+user+"/upload"+whichFile;
 			
 			downWordURL="/SG/m5_DICTATION_download_word.php?URL=./userdata/"+user+"/upload"+whichFile;
 			downSentenceURL="/SG/m5_DICTATION_download_sentence.php?URL=./userdata/"+user+"/upload"+whichFile;
@@ -343,6 +349,7 @@ usort($ScoreArray, "my_sort");
 			
 			document.getElementById("fightingURL").setAttribute('href',fightingURL);
 			document.getElementById("showURL").setAttribute('href',showURL);
+			document.getElementById("sentenceURL").setAttribute('href',sentenceURL);
 		
 			document.getElementById("downWordURL").setAttribute('href',downWordURL);
 			document.getElementById("downSentenceURL").setAttribute('href',downSentenceURL);
@@ -484,6 +491,10 @@ usort($ScoreArray, "my_sort");
                     <p id="composition"></p>
                     
 	
+                </fieldset>
+                <fieldset id="step_5">
+                    <legend>SENTENCE GAME</legend>
+                    <p><a id='sentenceURL' href="">Go!</a></p>
                 </fieldset>
            
         </div>
