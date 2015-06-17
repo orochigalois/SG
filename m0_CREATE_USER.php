@@ -1,5 +1,6 @@
 <?php
 include_once('./common.php');
+mkdir('./userdata');
 mkdir('./userdata/'.$_GET["user"],0777);
 mkdir('./userdata/'.$_GET["user"].'/sentence',0777);
 mkdir('./userdata/'.$_GET["user"].'/word',0777);
