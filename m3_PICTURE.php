@@ -500,8 +500,10 @@ if(!$_SESSION['user'])
 					myDialog.currentImgID=$(this)[0].parentNode.childNodes[1].children[0].id;
 
                     $('.eachLine').css('cursor', 'wait');
-                    $.post("m3_X_get_pic_from_bing.php", {
-                        word: myDialog.currentWord
+                    $.post("m3_X_get_pic_from_bingAPI.php", {
+						picName: myDialog.currentWord,
+                                    page: 1
+                        
                     }, function (data, status) {
                         $('.eachLine').css('cursor', 'default');
                         myDialog.page = 1;

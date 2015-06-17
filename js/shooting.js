@@ -770,7 +770,7 @@ L.module('impact.loader').requires('impact.image', 'impact.font', 'impact.sound'
         },
         countword:function(){
         	
-			this.status=0.5+LoadWordCount/TotalWordCount*0.5
+			this.status=0.5+LoadWordCount/TotalWordCount*0.5;
 		   	if(LoadWordCount==TotalWordCount)
 		   	{
 		   		clearInterval(this._intervalId);
@@ -801,7 +801,7 @@ L.module('impact.loader').requires('impact.image', 'impact.font', 'impact.sound'
             } else {
                 throw ('Failed to load resource: ' + path);
             }
-            this.status = 0.5 - (this._unloaded.length / this.resources.length);
+            this.status = 1 - (this._unloaded.length / this.resources.length);
             if (this._unloaded.length == 0) {
                 setTimeout(this.end.bind(this), 250);
             }

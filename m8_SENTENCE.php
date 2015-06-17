@@ -266,10 +266,10 @@ th {
                         'height:17px;text-decoration:none;' + bg("o_dialog_closebtn.gif"));
                     me.css(".popups a.closebtn:hover", bg("o_dialog_closebtn_over.gif"));
                     me.css(".popups .ff", "position:absolute;top:30px;left:10px;border:3px solid #68DFFB;width:" + (width - 26) + "px;height:" + (height - 51) + "px;background:#fff;");
-                    me.css(".popups .submitable", "position:absolute;bottom:0;border-top:1px solid #c0c0c0;width:100%;height:40px;background:#f9f9f9;");
-                    var buttoncss = 'display:block;float:right;margin: 0.7em 0.5em;padding:2px 7px;border:1px solid #dedede;' + 'background:#f5f5f5;color:#a9ea00;font:700 12px/130%  "SimSun","Times New Roman";text-decoration:none;';
-					var inputcss='display:block;width:800px;float:right;margin: 0.7em 0.5em;padding:2px 7px;border:1px solid #dedede;' + 'background:#f5f5f5;color:#a9ea00;font:700 12px/130%  "SimSun","Times New Roman";text-decoration:none;';
-                    var labelcss = 'display:block;float:right;margin: 0.7em 0.5em;padding:2px 7px;border:1px solid #dedede;' + 'background:#f5f5f5;color:#0000FF;font:700 12px/130%  "SimSun","Times New Roman";text-decoration:none;';
+                    me.css(".popups .submitable", "position:absolute;bottom:0;border-top:1px solid #c0c0c0;width:100%;height:60px;background:#f9f9f9;");
+                    var buttoncss = 'display:block;float:right;margin: 0.7em 0.5em;padding:2px 7px;border:1px solid #dedede;' + 'background:#f5f5f5;color:#a9ea00;font:700 20px/130%  "SimSun","Times New Roman";text-decoration:none;';
+					var inputcss='display:block;width:650px;float:right;margin: 0.7em 0.5em;padding:2px 7px;border:1px solid #dedede;' + 'background:#f5f5f5;color:#000000;font:700 20px/130%  "SimSun","Times New Roman";text-decoration:none;';
+                    var labelcss = 'display:block;float:right;margin: 0.7em 0.5em;padding:2px 7px;border:1px solid #dedede;' + 'background:#f5f5f5;color:#0000FF;font:700 20px/130%  "SimSun","Times New Roman";text-decoration:none;';
                     me.css(".inputSentence", inputcss);
                     me.css("a.enter", buttoncss);
                     me.css("a.label", labelcss);
@@ -901,7 +901,7 @@ $(function() {
 
   var myDialog = new Dialog({
     width: 1095,
-    height: 280,
+    height: 300,
     title: "Make sentence with these pictures"
   });
   myDialog.hide();

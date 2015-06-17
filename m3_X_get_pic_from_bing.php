@@ -1,9 +1,13 @@
 <?php
 include_once('./common.php');
 	
-$url="http://cn.bing.com/images/search?q=".$_REQUEST["word"]; 
+$url="http://www.bing.com/images/search?q=".$_REQUEST["word"]; 
+
+
 $string=curl_return_string($url);
 preg_match_all("/<img([^>]*)\s*src=('|\")([^'\"]+)('|\")/", $string,$matches);
+
+echo($matches);
 $new_arr=array_unique($matches[0]);
 $result='<div id="layout"><ul>';
 foreach($new_arr as $key){
