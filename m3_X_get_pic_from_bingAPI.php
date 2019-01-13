@@ -9,6 +9,9 @@
 
 // API parameter Doc: https://developers.google.com/custom-search/v1/cse/list
 
+//Daily Requests For Free: *100
+// Custom Search JSON API provides 100 search queries per day for free. If you need more, you may sign up for billing in the API Console. Additional requests cost $5 per 1000 queries, up to 10k queries per day.
+
 
 include_once('./common.php');
 

@@ -1,6 +1,7 @@
 <?php
 
 //api document: http://www.voicerss.org/api/documentation.aspx
+//Daily Requests For Free: *350
 include_once('./common.php');
 
 
