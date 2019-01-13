@@ -952,7 +952,8 @@ $(function() {
 		?></div>
 	    <div id='score' style="display:none">
 		<?php 
-		$file="./userdata/".$_SESSION['user']."/score.txt";
+		$file="./userdata/".$_SESSION['user']."/score.txt"
+;
 		$fh = fopen($file, 'r');
 		$theScore = fread($fh, filesize($file));
 		fclose($fh);
@@ -981,7 +982,7 @@ $(function() {
 				$word_array1=explode( "...", $word_array[$i]);
 		
 
-		echo '<img id="img'.$i.'" src="userdata/'.$_SESSION['user'].'/picture/'.$word_array1[0].
+		echo '<img width=200 height=150 id="img'.$i.'" src="userdata/'.$_SESSION['user'].'/picture/'.$word_array1[0].
 		'" style="left:'.($i*30).' ;top:'.($i*30).'" class="draggable stayinparent">';
 	
 			}

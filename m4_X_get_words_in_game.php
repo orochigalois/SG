@@ -1,4 +1,6 @@
 <?php
+
+//api document: http://www.voicerss.org/api/documentation.aspx
 include_once('./common.php');
 
 
@@ -22,9 +24,9 @@ for ($i = 0; $i < count($rows); $i++)
 	//If has "\r",then the final JSON is wrong,and the AJAX will never return!!!!!!
 	$sentence=str_replace("\r","",$columns[1]); 
 	if($accent==1)
-		$word_url = "http://translate.google.co.uk/translate_tts?ie=UTF-8&q=".$word."&tl=en&prev=input";
+		$word_url = "http://api.voicerss.org/?key=15532706502645b1aa39860ef349f0f3&hl=en-us&src=".$word;
 	else if($accent==2)
-		$word_url = "http://translate.google.com/translate_tts?ie=UTF-8&q=".$word."&tl=en&prev=input";
+		$word_url = "http://api.voicerss.org/?key=15532706502645b1aa39860ef349f0f3&hl=en-us&src=".$word;
 	else{}
 	$word_saveTo='./userdata/'.$_SESSION['user'].'/word/'.$word.'.mp3';
     $result.= $word.'","sentence": "'.$sentence.'"},{"word":"';
@@ -38,9 +40,9 @@ for ($i = 0; $i < count($rows); $i++)
 	}
 	
 	if($accent==1)
-		$sentence_url = "http://translate.google.co.uk/translate_tts?ie=UTF-8&q=".$sentence."&tl=en&prev=input";
+		$sentence_url = "http://api.voicerss.org/?key=15532706502645b1aa39860ef349f0f3&hl=en-us&src=".$sentence;
 	else if($accent==2)
-		$sentence_url = "http://translate.google.com/translate_tts?ie=UTF-8&q=".$sentence."&tl=en&prev=input";
+		$sentence_url = "http://api.voicerss.org/?key=15532706502645b1aa39860ef349f0f3&hl=en-us&src=".$sentence;
 	else{}
 	$sentence_url=str_replace(" ","%20",$sentence_url);
 	$sentence_saveTo='./userdata/'.$_SESSION['user'].'/sentence/'.$word.'.mp3';

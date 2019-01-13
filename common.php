@@ -35,7 +35,7 @@ function curl_through_bing($url)
 	if(USE_PROXY)
 		curl_setopt ($ch, CURLOPT_PROXY, PROXY_ADDRESS);
 	
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 	
 	curl_setopt ($ch, CURLOPT_URL, $url);
 	curl_setopt ($ch, CURLOPT_USERAGENT, USER_AGENT);

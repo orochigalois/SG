@@ -2168,8 +2168,8 @@ L.module('game.words').defines(function() {
 	
     
 	//$.ajaxSettings.async = false;
-    $.getJSON("/SG/m4_X_get_words_in_game.php",function(result){
-	      $.each(result, function(i, field){
+    $.getJSON("/SG/m4_X_get_words_in_game.php",function(data,status,xhr){
+	      $.each(data, function(i, field){
 		  	if(field.wordcount)
 				TotalWordCount=field.wordcount;
 			if(field.word)
@@ -3954,7 +3954,8 @@ L.module('game.main').requires('plugins.impact-splash-loader', 'impact.game', 'i
         
         update: function() {
         	CurrentPicture=new L.Image('./userdata/'+CurrentUser+'/picture/'+CurrentWord);
-	        if(!L.game.ShouldTypeSentence)
+	        if(!L.game.ShouldTypeSentence)
+
 	        {
 	            if (L.input.pressed('space')) {
 	                CurrentSentenceSound=new L.Sound('./userdata/'+CurrentUser+'/sentence/'+CurrentWord+'.ogg');

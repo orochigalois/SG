@@ -69,6 +69,12 @@ if(!$_SESSION['user'])
                 border-bottom: 1px solid #C1DAD7;
                 padding: 6px 6px 6px 6px;
             }
+
+            .eachImg img{
+                width:200px;
+                height:150px;
+                object-fit: contain;
+            }
         </style>
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script type="text/javascript">
@@ -224,9 +230,9 @@ if(!$_SESSION['user'])
                             me.hide();
                             $.post("m3_X_save_picture_to_server.php", {
                                 picName: me.currentWord,
-                                picURL: ee[1].attributes[0].value
+                                picURL: ee[1].attributes['src'].value
                             }, function (data, status) {
-                                $("#" + me.currentImgID).attr("src", ee[1].attributes[0].value);
+                                $("#" + me.currentImgID).attr("src", ee[1].attributes['src'].value);
                             });
 
                         }
@@ -495,7 +501,6 @@ if(!$_SESSION['user'])
                 myDialog.hide();
 
                 $(".eachImg").click(function () {
-                    
                     myDialog.currentWord=$(this)[0].parentNode.childNodes[0].innerHTML;
 					myDialog.currentImgID=$(this)[0].parentNode.childNodes[1].children[0].id;
 
